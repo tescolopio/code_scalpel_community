@@ -22,7 +22,7 @@ It wraps your stochastic agent in a deterministic "Glass Box."
 
 ## The Solution: Tools, Not Text
 
-Code Scalpel treats code as a **Mathematical Graph** (AST + PDG). It forces agents to use deterministic tools:
+Code Scalpel treats code as a **Mathematical Graph** (AST + PDG). It gives AI agents deterministic tools:
 
 * **Don't read the file** → `extract_code` (Surgical AST Extraction)
 * **Don't guess the line** → `update_symbol` (AST-Validated Patching)
@@ -33,28 +33,28 @@ Code Scalpel treats code as a **Mathematical Graph** (AST + PDG). It forces agen
 
 ## The Four Pillars Goal for Code Scalpel
 
-### 1. Governable: The Invisible Audit Trail
+### 1. Governable AI: The Invisible Audit Trail
 
 Compliance isn't sexy, but it's required. Code Scalpel creates a `.code-scalpel/audit.jsonl` trail for every operation.
 
 * **Provenance:** We log the *decision path* (Graph Trace), not just the output.
 * **Integrity:** Our `verify_policy_integrity` tool cryptographically ensures your AI follows your security rules without drift.
 
-### 2. ✅ Accurate: The End of Hallucination
+### 2. Accurate AI: The End of Hallucination
 
 When Code Scalpel says "This function has 3 callers," it is a **Graph Fact**, not an LLM guess.
 
 * **Symbolic Execution:** We use the Z3 solver to mathematically explore edge cases that humans (and LLMs) miss.
 
-### 3. Safer: The Syntax-Aware Gatekeeper
+### 3. Safer AI: The Syntax-Aware Gatekeeper
 
-We verified this in our **Community Tier Report**: Code Scalpel parses every AI edit *before* writing to disk.
+We verified this in our recent **[Community Tier Report](./docs/reports/community_tier_report.md)**: Code Scalpel tool use parses every AI edit *before* writing to disk.
 
 * **Scenario:** Agent hallucinates a missing parenthesis `)`.
 * **Standard Tool:** Writes file → **Build Breaks.**
 * **Code Scalpel:** AST Parser fails → **Edit Rejected & Logged.**
 
-### 4. Cheaper: 99% Context Reduction
+### 4. Cheaper AI: 99% Context Reduction
 
 Instead of feeding 10 full files (15k tokens) to an LLM, Code Scalpel’s **PDG Engine** surgically extracts only the relevant function and its dependencies.
 
@@ -64,8 +64,7 @@ Instead of feeding 10 full files (15k tokens) to an LLM, Code Scalpel’s **PDG 
 
 ## Key Capabilities (v1.0) | Jan 2026
 
-Code Scalpel launches with **22 specialized tools** divided into five surgical disciplines.
-**Note:** We do not cripple the engine. All 22 tools are fully operational in the Community Edition.
+Code Scalpel will include **22 specialized tools** divided into five surgical disciplines. All tools are fully operational in the Community Edition.
 
 ### 1. Surgical Extraction & Analysis (6 Tools)
 
@@ -109,17 +108,6 @@ Code Scalpel launches with **22 specialized tools** divided into five surgical d
 
 * **`get_cross_file_dependencies`**: Deep dependency chains.
 * **`code_policy_check`**: Compliance evaluation (OWASP/SOC2 mapping).
-
----
-
-## Proven in Battle: The "Ninja Warrior" Suite
-
-We didn't just write unit tests. We built a **Torture Chamber** for AI Agents.
-Code Scalpel has been verified against the **Code Scalpel Ninja Warrior** repository, passing scenarios that break standard agents:
-
-* **Legacy Nightmare:** Refactoring code without deleting "DO NOT TOUCH" comments.
-* **Blindfold Maze:** Mapping a spaghetti repo without reading the files.
-* **Hidden Bug:** Finding a crash state that requires a specific integer input (via Z3).
 
 ---
 
